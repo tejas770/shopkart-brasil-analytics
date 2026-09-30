@@ -1,0 +1,14 @@
+# KPI Dictionary
+
+| KPI | Definition / Value | Business Meaning | Notes |
+|---|---|---|---|
+| Delivered Orders | `order_status='delivered'` AND delivery date present — **96,470** | Total number of orders that successfully reached customers; this defines the core population for delivery-performance analysis. | 775 orders never got items (mostly unavailable/canceled). |
+| GMV (Revenue proxy) | `SUM(price + freight_value)`, delivered only — **R$15.42M** | Shows the total order value handled through delivered orders and provides the main scale measure for the business analysis. | Not actual company revenue because commission data is unavailable. |
+| AOV | GMV ÷ delivered orders — **R$159.83** | Shows how much value the business generates per delivered order on average, helping put revenue changes in order-value context. | |
+| Late Delivery Rate | `delivered_date::date > estimated_date::date` — **6.77%** | Every 100 delivered orders mein kitne customers ko promise se der se delivery mili. | Timestamp-level definition gives 8.11%; always state which definition is being used. |
+| Avg / Median Delivery Time | Purchase → customer delivery — **12.56 / 10.22 days** | Shows the typical customer waiting time and the median experience, helping operations understand both normal delivery speed and the effect of unusually long deliveries. | Right-skewed; report both. |
+| Review Score (on-time vs late) | Average review score — **4.29 vs 2.27** | Shows how strongly the customer experience differs between on-time and late deliveries, making delivery reliability directly relevant to customer satisfaction. | Gap holds within every state (1.63–2.62). |
+| Seller Handling Time | Purchase → carrier handover — **~3 days (stable)** | Shows how long sellers take to hand orders to the carrier; a rising value would indicate increasing seller-side processing delay. | Not a major driver of spikes. |
+| Carrier Transit Time | Carrier handover → customer — **~75% of total delivery time** | Shows how much of the delivery journey happens after carrier handover and helps identify whether transportation is the main operational bottleneck. | Main driver of Feb–Mar 2018 and Nov 2017 spikes. |
+| Promise Buffer | Estimated date − delivered date — **correlation -0.61 with late rate** | Measures the cushion between the promised delivery date and actual delivery; a shrinking buffer can act as an early-warning signal for rising late deliveries. | When this falls below 8 days, late rate becomes double-digit according to the analysis. |
+| Category Weight Effect | Weight vs late-rate correlation — **0.21 (weak)** | Tests whether heavier product categories tend to experience more late deliveries, helping determine whether product physical characteristics are a meaningful operational factor. | Bulky-product hypothesis not well supported; some heavy furniture categories are exceptions. |
